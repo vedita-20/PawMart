@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PawMart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-out;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #8B4513;
+            padding: 15px 30px;
+            color: white;
+            animation: slideIn 0.5s ease-out;
+        }
+        .navbar img {
+            height: 50px;
+            max-width: 150px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+        .nav-links a:hover {
+            background: #ff9800;
+            border-radius: 5px;
+        }
+        .contact-form {
+            background: white;
+            padding: 30px;
+            margin: 20px auto;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+        .contact-form input, 
+        .contact-form textarea, 
+        .contact-form button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .contact-form button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #e68900;
+        }
+        .footer {
+            background: #8B4513;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="logo1.png" alt="PawMart Logo">
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="adopt.html">Adopt</a>
+            <a href="main.html">Book Appointment</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+
+    <section class="contact-form">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <div class="footer">
+        <p>Follow us on Instagram: <a href="#" style="color: yellow;">@PawMartPets</a></p>
+        <p>&copy; 2025 PawMart. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawMart - Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #8B4513, #D2B48C);
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 900px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .left-section {
+            width: 40%;
+            background: #8B4513;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .left-section img {
+            width: 80%; /* Adjust width dynamically */
+    max-width: 200px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px;
+        }
+        .left-section p {
+            font-size: 18px;
+            font-style: italic;
+        }
+        .right-section {
+            width: 60%;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #8B4513;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .login-btn {
+            background: #ff9800;
+            color: white;
+        }
+        .login-btn:hover {
+            background: #e68900;
+        }
+        .secondary-btn {
+            background: #ddd;
+            color: #333;
+        }
+        .secondary-btn:hover {
+            background: #ccc;
+        }
+        .links {
+            margin-top: 15px;
+        }
+        .links a {
+            text-decoration: none;
+            color: #8B4513;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <img src="logo1.png" alt="PawMart Logo" >
+            <p>"Keep your furry friend happy and healthy!"</p>
+        </div>
+        <div class="right-section">
+            <h1>Login to PawMart</h1>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button class="btn login-btn" onclick="login()">Login</button>
+            <div class="links">
+                <a href="ca.html">Create an Account</a> | 
+                <a href="fp.html">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function login() {
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+
+        if (!username || !password) {
+            alert('Please enter both username and password.');
+            return;
+        }
+
+        let storedUser = localStorage.getItem(username);
+        if (storedUser) {
+            let user = JSON.parse(storedUser);
+            if (user.password === password) {
+                localStorage.setItem('loggedInUser', username); // Store login state
+                alert('Login successful!');
+                window.location.href = 'home.html'; // Redirect to the e-commerce page
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        } else {
+            alert('User not found. Please sign up.');
+        }
+    }
+</script>
+
+</html>

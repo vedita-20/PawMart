@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt a Pet - PawMart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #8B4513;
+            padding: 15px 30px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar img {
+            height: 50px;
+        }
+        .nav-links {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+        .nav-links a:hover {
+            background: #ff9800;
+            border-radius: 5px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            font-size: 24px;
+            font-weight: bold;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        /* Pets Section */
+        .pets-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+        }
+        
+        .pet-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 250px;
+            transition: transform 0.3s;
+        }
+        .pet-card:hover {
+            transform: scale(1.05);
+        }
+        .pet-card img {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+        }
+        .adopt-btn {
+            background: #ff9800;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .adopt-btn:hover {
+            background: #e68900;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #8B4513;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <img src="logo1.png" alt="PawMart Logo">
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="adopt.html">Adopt</a>
+            <a href="main.html">Book Appointment</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <div class="hero">🐾 Find Your New Best Friend! Adopt a Pet Today! 🐶🐱</div>
+    
+    <!-- Pets Section -->
+    <div class="pets-container">
+        <div class="pet-card">
+            <img src="gr.jpeg" alt="Buddy">
+            <h3>Buddy</h3>
+            <p>Golden Retriever - 2 Years Old</p>
+            <button class="adopt-btn" onclick="adoptPet('Buddy')">Adopt</button>
+        </div>
+        <div class="pet-card">
+            <img src="pug.jpg" alt="pug">
+            <h3>Buzz</h3>
+            <p>Pug- 3 Years Old</p>
+            <button class="adopt-btn" oneclick ="adoptPet('Buzz')">Adopt</button>
+        </div>
+        <div class="pet-card">
+            <img src="blg.jpeg" alt="Rocky">
+            <h3>Rocky</h3>
+            <p>Bulldog - 4 Years Old</p>
+            <button class="adopt-btn" onclick="adoptPet('Rocky')">Adopt</button>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <p>Follow us on Instagram: <a href="#">@PawMartPets</a></p>
+        <p>&copy; 2025 PawMart. All Rights Reserved.</p>
+    </div>
+</body>
+<script>
+     function adoptPet(petName) {
+            // Create a confirmation message
+            let confirmAdopt = confirm(`Are you sure you want to adopt ${petName}?`);
+            
+            if (confirmAdopt) {
+                // If user confirms, display an alert and add the pet to the list of adopted pets
+                alert(`Congratulations! You have successfully adopted ${petName}.`);
+                
+                // Optionally, you can store the adopted pet in localStorage or display a list of adopted pets
+                let adoptedPets = JSON.parse(localStorage.getItem('adoptedPets')) || [];
+                adoptedPets.push(petName);
+                localStorage.setItem('adoptedPets', JSON.stringify(adoptedPets));
+            } else {
+                alert(`You have canceled the adoption of ${petName}.`);
+            }
+        }
+</script>
+</html>

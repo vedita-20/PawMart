@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Account - PawMart</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #8B4513, #D2B48C);
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #8B4513;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .create-btn {
+            background: #ff9800;
+            color: white;
+        }
+        .create-btn:hover {
+            background: #e68900;
+        }
+        .links {
+            margin-top: 15px;
+        }
+        .links a {
+            text-decoration: none;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Account</h1>
+        <input type="text" id="fullName" placeholder="Full Name" required>
+        <p class="error" id="nameError"></p>
+
+        <input type="email" id="email" placeholder="Email" required>
+        <p class="error" id="emailError"></p>
+
+        <input type="text" id="username" placeholder="Username" required>
+        <p class="error" id="userError"></p>
+
+        <input type="password" id="password" placeholder="Password" required>
+        <p class="error" id="passError"></p>
+
+        <button class="btn create-btn" onclick="register()">Sign Up</button>
+
+        <div class="links">
+            <a href="index.html">Back to Login</a>  <!-- UPDATED LINK -->
+        </div>
+    </div>
+
+    <script>
+        function register() {
+            let fullName = document.getElementById('fullName').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let username = document.getElementById('username').value.trim();
+            let password = document.getElementById('password').value.trim();
+
+            let nameError = document.getElementById('nameError');
+            let emailError = document.getElementById('emailError');
+            let userError = document.getElementById('userError');
+            let passError = document.getElementById('passError');
+
+            nameError.innerHTML = '';
+            emailError.innerHTML = '';
+            userError.innerHTML = '';
+            passError.innerHTML = '';
+
+            let valid = true;
+
+            if (fullName.length < 3) {
+                nameError.innerHTML = "Full name must be at least 3 characters.";
+                valid = false;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                emailError.innerHTML = "Enter a valid email address.";
+                valid = false;
+            }
+
+            if (username.length < 4) {
+                userError.innerHTML = "Username must be at least 4 characters.";
+                valid = false;
+            }
+
+            if (password.length < 6) {
+                passError.innerHTML = "Password must be at least 6 characters.";
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            if (localStorage.getItem(username)) {
+                alert("Username already taken! Try a different one.");
+                return;
+            }
+
+            let user = {
+                fullName: fullName,
+                email: email,
+                username: username,
+                password: password
+            };
+
+            localStorage.setItem(username, JSON.stringify(user));
+            alert("Account created successfully! Redirecting to login...");
+
+            setTimeout(() => {
+                window.location.href = "index.html";  // UPDATED REDIRECT
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

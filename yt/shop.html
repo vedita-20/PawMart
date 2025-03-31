@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Mart - PawMart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #8B4513;
+            padding: 15px 30px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar img {
+            height: 50px;
+            margin-left: 20px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            margin-right: 40px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background: #ff9800;
+        }
+        .shop-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 120px 20px 40px;
+            flex-grow: 1;
+        }
+        .shop-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 250px;
+            transition: transform 0.3s;
+        }
+        .shop-item:hover {
+            transform: scale(1.05);
+        }
+        .shop-item img {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+        }
+        .cart-btn {
+            background: #ff9800;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .cart-btn:hover {
+            background: #e68900;
+        }
+        .cart-container {
+            padding: 20px;
+            background: white;
+            margin: 20px auto;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .footer {
+            background: #8B4513;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="logo1.png" alt="PawMart Logo">
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="adopt.html">Adopt</a>
+            <a href="main.html">Book Appointment</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+    
+    <div class="shop-container" id="shop">
+        <div class="shop-item">
+            <img src="yt.webp" alt="Dog Food">
+            <h3>Dog Food</h3>
+            <p>$10</p>
+            <button class="cart-btn" onclick="addToCart('Dog Food', 10)">Add to Cart</button>
+        </div>
+        <div class="shop-item">
+            <img src="ct.webp" alt="Chew Toy">
+            <h3>Chew Toy</h3>
+            <p>$5</p>
+            <button class="cart-btn" onclick="addToCart('Chew Toy', 5)">Add to Cart</button>
+        </div>
+        <div class="shop-item">
+            <img src="petb.jpeg" alt="Pet Bowl">
+            <h3>Pet Bowl</h3>
+            <p>$7</p>
+            <button class="cart-btn" onclick="addToCart('Pet Bowl', 7)">Add to Cart</button>
+        </div>
+    </div>
+    
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        <ul id="cart-list"></ul>
+        <h3>Total: $<span id="total-price">0</span></h3>
+        <h3>Delivery Address</h3>
+        <input type="text" id="delivery-address" placeholder="Enter your address">
+        <button class="cart-btn" onclick="placeOrder()">Place Order</button>
+    </div>
+    
+    <div class="footer">
+        <p>Follow us on Instagram: <a href="#">@PawMartPets</a></p>
+        <p>&copy; 2025 PawMart. All Rights Reserved.</p>
+    </div>
+    
+    <script>
+        let cart = [];
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            updateCart();
+        }
+        function updateCart() {
+            let cartList = document.getElementById('cart-list');
+            let totalPrice = document.getElementById('total-price');
+            cartList.innerHTML = '';
+            let total = 0;
+            cart.forEach(product => {
+                let li = document.createElement('li');
+                li.textContent = `${product.item} - $${product.price}`;
+                cartList.appendChild(li);
+                total += product.price;
+            });
+            totalPrice.textContent = total;
+        }
+        function placeOrder() {
+            let address = document.getElementById('delivery-address').value;
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            if (!address) {
+                alert('Please enter your delivery address.');
+                return;
+            }
+            alert(`Order placed successfully! Your items will be delivered to ${address}.`);
+            cart = [];
+            updateCart();
+            document.getElementById('delivery-address').value = '';
+        }
+    </script>
+</body>
+</html>
